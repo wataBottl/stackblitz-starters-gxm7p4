@@ -1,0 +1,48 @@
+@use "@angular/material" as material;
+@use "sass:map" as map;
+
+@include material.core();
+
+@mixin theme($primary, $accent, $warn) {
+
+    $darkTheme: material.define-dark-theme((color: (primary: $primary,
+                    accent: $accent,
+                    warn: $warn)));
+
+    $theme: material.define-light-theme((color: (primary: $primary,
+                    accent: $accent,
+                    warn: $warn)));
+
+    /* The default theme */
+    @include material.all-component-themes($theme);
+
+    @media screen and (prefers-color-scheme: dark) {
+        @include material.all-component-colors($darkTheme);
+        $theme: $darkTheme;
+    }
+
+    $color-config: map.get($theme, 'color');
+    $primary: material.get-color-from-palette(map.get($color-config, 'primary'));
+    $accent: material.get-color-from-palette(map.get($color-config, 'accent'));
+    $warn: material.get-color-from-palette(map.get($color-config, 'warn'));
+    $background: map.get(map.get($theme, 'background'), 'background');
+    $font-color: map.get(map.get($theme, 'foreground'), 'text');
+
+    :root {
+
+        --opacity: .15;
+        --primary: #{$primary};
+        --accent: #{$accent};
+        --warn: #{$warn};
+
+        --background: #{rgba($background, 1)};
+    }
+}
+
+/* The colors used inside the app. */
+$primary: material.define-palette(material.$green-palette);
+$accent: material.define-palette(material.$purple-palette, 800);
+$warn: material.define-palette(material.$red-palette);
+
+/* Material theme. */
+@include theme($primary, $accent, $warn);

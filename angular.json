@@ -26,12 +26,16 @@
             }
           },
           "options": {
+            "inlineStyleLanguage": "scss",
             "assets": [],
             "index": "src/index.html",
             "browser": "src/main.ts",
             "outputPath": "dist/demo",
             "scripts": [],
-            "styles": ["src/global_styles.css"],
+            "styles": [
+              "src/UI.scss",
+              "src/global_styles.scss"
+            ],
             "tsConfig": "tsconfig.app.json"
           }
         },
