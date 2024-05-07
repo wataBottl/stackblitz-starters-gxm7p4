@@ -9,7 +9,7 @@ import 'zone.js';
     <h1>Hello from {{ name }}!</h1>
     
     <div class="square">
-      <p>This square should have background.
+      <p>This square should have background 25% of var(--primary)
     </div>
   `,
   styles: `
@@ -17,8 +17,9 @@ import 'zone.js';
  
     :host .square{
       aspect-ratio: 1/1;
-      width: 100px;
-      background-color: UI.getColor(primary, .25)
+      width: 150px;
+      background-color: UI.getColor(primary, .25);
+      outline: white 1px solid;
     }
   `
 })
